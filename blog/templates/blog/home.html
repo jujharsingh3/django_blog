@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if blogs.count == 0 %}
+		<h4 class="text-center">No blogs found</h4>
+		<div class="text-center" >
+	<a href="{% url 'create_blog' %}" class="btn btn-info ">+ Create</a>
+	</div>
+	{% else %}
+	<h4 class="text-center">{{ blogs.count }} blogs available</h4>
+	<div class="text-center" >
+	<a href="{% url 'create_blog' %}"class="btn btn-info ">+ Create</a>
+	</div>
+	{% for blog in blogs %}
+	<div class="card mb-3 mt-3">
+	<div class="card-body">
+	<img class="rounded-circle p-2 bg-white pb-2 pt-0" style="width:60px; height:50px;  float:left; " src="{{ blog.owner.profile.avatar.url }}">
+	<h5 class="card-title text-primary">{{ blog.owner }} <span class="text-secondary" style="font-size:10px">{{ blog.created_at|timesince }} ago</span><h5>
+		<hr>
+ 	   <h5 class="card-title">{{ blog.title }}</h5>
+   	 <p class="card-text">{{ blog.content|truncatewords:30 }}.....</p>
+    	<a href="{% url 'blog' blog.id %}" class="btn btn-primary">Continue reading</a>
+    	<a class="btn btn-secondary" href="{% url 'blog_details' blog.id %}" role="button">Details</a>
+  	</div>
+	</div>
+  {% endfor %}
+  {% endif %}
+{% endblock %} 

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div class="card">
+	<div class="card-body">
+ 	   <h5 class="card-title">{{ blog.title }}</h5>
+ 	   <h4 class="card-title text-secondary">Posted by {{ blog.owner }} on {{ blog.created_at|date:"d F, Y" }}</h4>
+ 	   <a class="btn btn-secondary" href="{% url 'blog_details' blog.id %}" role="button">Details</a>
+		<hr>
+   	 <p class="card-text">{{ blog.content }}</p>
+  	</div>
+	</div>
+			<h3 class="text-center mt-2">Comments</h3>
+	 <form method="post">
+        {% csrf_token %}
+        <div class="form-group mt-2">
+            <input type="text" class="form-control" name="comment" placeholder="Enter comment here">
+        </div>
+        <button type="submit" class="btn btn-primary mt-1">Submit</button>
+    </form>
+    {% for comment  in comments %}
+       <div>
+  	<div class="card mt-2" style="width: 21rem;">
+  <div class="card-body">
+  <img class="rounded-circle mb-2 mr-2" style="height:40px; width:40px; float: left " src="{{ comment.user.profile.avatar.url }}">
+  <h5 class="text-secondary">{{ comment.user.username }} <small>{{ comment.created_at|timesince }} ago</small></h5>
+  <hr>
+    <p class="card-text text-secondary">{{ comment.content }}</p>
+  </div>
+</div>
+  {% endfor %}
+  
+{% endblock %}

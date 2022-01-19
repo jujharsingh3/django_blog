@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
+<div class="demo-container">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-12 mx-auto">
+        <div class="p-3 pl-2 pr-2 bg-white rounded shadow-lg">
+          <h3 class="mb-2 text-center pt-5">Create a new Blog</h3>
+          <form method="POST">
+          {% csrf_token %}
+          
+            <label class="font-500">Title</label>
+            <input name="title" class="form-control " type="text">
+            
+            <label class="font-500">Content</label>
+            <textarea name="content" class="form-control" rows="10" type="text"></textarea>
+            
+            <button class="btn btn-primary btn-lg w-100 shadow-lg mt-3">Create</button>
+          </form>       
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
