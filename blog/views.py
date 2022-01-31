@@ -1,4 +1,3 @@
-#pylint:disable=E1101
 from django.shortcuts import render, redirect, reverse
 from .models import Blog, Comment
 from django.db.models import Q
@@ -6,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-import os
+
 
 # Create your views here.
 @login_required()
