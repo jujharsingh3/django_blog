@@ -108,8 +108,7 @@ def profile(request, owner):
 			user.profile.avatar = files.get('image')
 		
 		user.save()
-		messages.success(request, 'Profile updated login to continue')
-		return redirect('login')
+		messages.success(request, 'Profile updated')
 	context={
 	'blogs':blogs,
 	'user':user
